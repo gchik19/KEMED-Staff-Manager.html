@@ -9,6 +9,12 @@ export const db = new Database(dbPath);
 export function setupDb() {
   // Create tables
   db.exec(`
+    CREATE TABLE IF NOT EXISTS ranks (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      category TEXT NOT NULL
+    );
+
     CREATE TABLE IF NOT EXISTS schools (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL UNIQUE

@@ -42,11 +42,14 @@ export function Login() {
       
       <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl z-10 overflow-hidden border border-slate-100 flex flex-col">
         <div className="bg-gradient-to-br from-[#004d40] to-[#00332a] pt-10 pb-8 px-6 text-center text-white flex flex-col items-center">
-           <div className="px-2 py-1 mb-4 flex items-center justify-center">
-             <img src="/logo.png" alt="GES Logo" className="h-20 w-auto object-contain mix-blend-multiply drop-shadow-sm" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+           <div className="mb-4 flex items-center justify-center bg-white rounded-full h-28 w-28 shadow-xl mx-auto overflow-hidden ring-4 ring-white/20">
+             <img src="/logo.png" alt="GES Logo" className="h-full w-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
            </div>
            <h1 className="text-3xl font-black tracking-wider text-yellow-400 drop-shadow-md shadow-black/50">KEMED</h1>
-           <p className="text-xs font-bold text-white mt-2 uppercase tracking-widest bg-black/20 px-3 py-1 rounded-full shadow-inner">
+           <p className="text-sm font-medium text-white/90 mt-1 uppercase tracking-widest px-2 text-center leading-tight">
+             Krachi East Municipal<br/>Education Directorate
+           </p>
+           <p className="text-xs font-bold text-white mt-3 uppercase tracking-widest bg-black/20 px-4 py-1.5 rounded-full shadow-inner">
              Staff Manager
            </p>
         </div>

@@ -37,6 +37,7 @@ export function StaffForm() {
   });
   
   const [schools, setSchools] = useState<any[]>([]);
+  const [ranks, setRanks] = useState<any[]>([]);
 
   useEffect(() => {
     if (user?.role === "SUPER_ADMIN") {
@@ -44,6 +45,10 @@ export function StaffForm() {
          .then(res => res.json())
          .then(setSchools);
     }
+    fetch("/api/ranks", { headers: { Authorization: `Bearer ${token}` } })
+      .then(res => res.json())
+      .then(setRanks)
+      .catch(() => {});
   }, [user, token]);
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -196,6 +201,23 @@ export function StaffForm() {
               <Input id="other_names" value={formData.other_names} onChange={handleChange} className={`shadow-sm focus-visible:ring-[#004d40] ${errors.other_names ? 'border-red-500' : ''}`} />
               {errors.other_names && <p className="text-xs text-red-500">{errors.other_names}</p>}
             </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="job_grade" className="font-semibold text-slate-700">Rank (Job Grade)</Label>
+              <select
+                id="job_grade"
+                name="job_grade"
+                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-[#004d40] disabled:cursor-not-allowed disabled:opacity-50"
+                value={formData.job_grade}
+                onChange={handleChange}
+              >
+                <option value="">Select Rank</option>
+                {ranks.map(r => (
+                  <option key={r.id} value={r.name}>{r.name}</option>
+                ))}
+              </select>
+            </div>
+
             <div className="space-y-2">
               <Label htmlFor="dob" className="font-semibold text-slate-700">Date of Birth <span className="text-red-500">*</span></Label>
               <Input id="dob" type="date" value={formData.dob} onChange={handleChange} required className={`shadow-sm focus-visible:ring-[#004d40] ${errors.dob ? 'border-red-500' : ''}`} />

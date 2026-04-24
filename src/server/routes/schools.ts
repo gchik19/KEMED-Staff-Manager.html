@@ -25,6 +25,33 @@ router.post("/", requireRoles(["SUPER_ADMIN"]), (req: Request, res: Response): a
   }
 });
 
+router.post("/bulk", requireRoles(["SUPER_ADMIN"]), (req: Request, res: Response): any => {
+  const { schools } = req.body;
+  if (!Array.isArray(schools)) return res.status(400).json({ error: "Schools array is required" });
+
+  try {
+    const insert = db.prepare("INSERT INTO schools (name) VALUES (?)");
+    const insertMany = db.transaction((items) => {
+      let count = 0;
+      for (const item of items) {
+        if (!item || item.trim() === '') continue;
+        try {
+          insert.run(item.toUpperCase().trim());
+          count++;
+        } catch (e: any) {
+          if (!e.message.includes("UNIQUE")) throw e;
+        }
+      }
+      return count;
+    });
+    
+    const count = insertMany(schools);
+    res.json({ success: true, count });
+  } catch (err: any) {
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
 router.put("/:id", requireRoles(["SUPER_ADMIN"]), (req: Request, res: Response): any => {
   const { name } = req.body;
   if (!name) return res.status(400).json({ error: "School name is required" });

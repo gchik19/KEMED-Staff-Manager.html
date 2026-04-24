@@ -12,6 +12,7 @@ import { StaffList } from "./pages/StaffList";
 import { StaffForm } from "./pages/StaffForm";
 import { Users } from "./pages/Users";
 import { Schools } from "./pages/Schools";
+import { Ranks } from "./pages/Ranks";
 
 export default function App() {
   const { user, isLoading } = useAuth();
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="staff/new" element={<StaffForm />} />
         <Route path="staff/edit/:id" element={<StaffForm />} />
         {(user.role === "SUPER_ADMIN" || user.role === "ADMIN") && <Route path="schools" element={<Schools />} />}
+        {(user.role === "SUPER_ADMIN" || user.role === "ADMIN") && <Route path="ranks" element={<Ranks />} />}
         {user.role === "SUPER_ADMIN" && <Route path="users" element={<Users />} />}
         <Route path="*" element={<Navigate to={user.role === "HEAD_TEACHER" ? "/staff" : "/dashboard"} replace />} />
       </Route>

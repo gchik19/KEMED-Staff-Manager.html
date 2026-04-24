@@ -8,6 +8,7 @@ import { router as staffRouter } from "./src/server/routes/staff";
 import { router as dashboardRouter } from "./src/server/routes/dashboard";
 import { router as usersRouter } from "./src/server/routes/users";
 import { router as schoolsRouter } from "./src/server/routes/schools";
+import { ranksRouter } from "./src/server/routes/ranks";
 
 async function startServer() {
   const app = express();
@@ -25,6 +26,7 @@ async function startServer() {
   app.use("/api/dashboard", dashboardRouter);
   app.use("/api/users", usersRouter);
   app.use("/api/schools", schoolsRouter);
+  app.use("/api/ranks", ranksRouter);
 
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {

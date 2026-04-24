@@ -13,6 +13,7 @@ export function Layout() {
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard, roles: ["SUPER_ADMIN", "ADMIN"] },
     { name: "Staff Records", href: "/staff", icon: UsersIcon, roles: ["SUPER_ADMIN", "ADMIN", "HEAD_TEACHER"] },
     { name: "Schools", href: "/schools", icon: Landmark, roles: ["SUPER_ADMIN", "ADMIN"] },
+    { name: "Staff Ranks", href: "/ranks", icon: UsersRound, roles: ["SUPER_ADMIN", "ADMIN"] },
     { name: "User Management", href: "/users", icon: UsersRound, roles: ["SUPER_ADMIN"] },
   ];
 
@@ -37,12 +38,13 @@ export function Layout() {
       >
         <div className="flex items-center justify-between p-5 border-b border-[#00332a] bg-[#003d33]">
           <div className="flex items-center gap-3">
-             <div className="p-1 rounded-lg">
-               <img src="/logo.png" alt="GES Logo" className="h-10 w-auto object-contain mix-blend-multiply" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+             <div className="rounded-full bg-white flex items-center justify-center overflow-hidden h-12 w-12 ring-2 ring-white/20">
+               <img src="/logo.png" alt="GES Logo" className="h-full w-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
              </div>
-             <div>
+             <div className="flex-1 min-w-0">
                <h1 className="text-xl font-bold leading-tight text-yellow-400 drop-shadow-sm tracking-wide">KEMED</h1>
-               <p className="text-[10px] text-white/90 font-bold tracking-widest uppercase">Staff Manager</p>
+               <p className="text-[9px] text-white/80 font-medium leading-tight mb-1 truncate whitespace-break-spaces">Krachi East Municipal<br/>Education Directorate</p>
+               <p className="text-[10px] text-white/90 font-bold tracking-widest uppercase inline-block bg-black/20 px-1.5 py-0.5 rounded">Staff Manager</p>
              </div>
           </div>
           <button onClick={closeSidebar} className="lg:hidden p-1 rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors">
