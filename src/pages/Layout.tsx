@@ -8,6 +8,7 @@ export function Layout() {
   const { user, logout } = useAuth();
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const navigation = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard, roles: ["SUPER_ADMIN", "ADMIN"] },
@@ -37,9 +38,13 @@ export function Layout() {
         )}
       >
         <div className="flex items-center justify-between p-5 border-b border-[#00332a] bg-[#003d33]">
-          <div className="flex items-center gap-3">
+           <div className="flex items-center gap-3">
              <div className="rounded-full bg-white flex items-center justify-center overflow-hidden h-12 w-12 ring-2 ring-white/20">
-               <img src="/logo.png" alt="GES Logo" className="h-full w-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+               {!imageError ? (
+                 <img src="/logo.png?v=2" alt="GES Logo" className="h-full w-full object-contain p-1" onError={() => setImageError(true)} />
+               ) : (
+                 <Landmark className="h-6 w-6 text-[#004d40]" />
+               )}
              </div>
              <div className="flex-1 min-w-0">
                <h1 className="text-xl font-bold leading-tight text-yellow-400 drop-shadow-sm tracking-wide">KEMED</h1>

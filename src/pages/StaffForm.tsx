@@ -257,14 +257,38 @@ export function StaffForm() {
                </div>
             )}
             
+            <div className="space-y-2">
+              <Label htmlFor="class_taught" className="font-semibold text-slate-700">Class Taught</Label>
+              <Input id="class_taught" value={formData.class_taught} onChange={handleChange} className="shadow-sm focus-visible:ring-[#004d40]" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="subject_taught" className="font-semibold text-slate-700">Subject Taught</Label>
+              <Input id="subject_taught" value={formData.subject_taught} onChange={handleChange} className="shadow-sm focus-visible:ring-[#004d40]" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="additional_responsibility" className="font-semibold text-slate-700">Additional Responsibility</Label>
+              <Input id="additional_responsibility" value={formData.additional_responsibility} onChange={handleChange} className="shadow-sm focus-visible:ring-[#004d40]" />
+            </div>
+            
             {/* Additional mapped fields */}
-            {['highest_qualification', 'telephone', 'ssnit_number', 'ghana_card_number'].map(k => (
+            {['highest_qualification', 'qualification_institution', 'telephone', 'ssnit_number', 'ghana_card_number', 'management_unit', 'bank_name', 'account_number'].map(k => (
                <div key={k} className="space-y-2">
                   <Label htmlFor={k} className="font-semibold text-slate-700">{k.replace(/_/g, ' ').toUpperCase()}</Label>
                   <Input id={k} value={formData[k]} onChange={handleChange} className={`shadow-sm focus-visible:ring-[#004d40] ${errors[k] ? 'border-red-500' : ''}`} />
                   {errors[k] && <p className="text-xs text-red-500">{errors[k]}</p>}
                </div>
             ))}
+            
+            <div className="space-y-2 flex items-center gap-2 mt-4">
+              <input 
+                type="checkbox" 
+                id="payroll_active" 
+                checked={formData.payroll_active} 
+                onChange={handleChange}
+                className="w-4 h-4 text-[#004d40] border-slate-300 rounded focus:ring-[#004d40]"
+              />
+              <Label htmlFor="payroll_active" className="font-semibold text-slate-700 cursor-pointer mb-0">Payroll Active</Label>
+            </div>
 
             {user?.role === "SUPER_ADMIN" && (
                <div className="space-y-2">

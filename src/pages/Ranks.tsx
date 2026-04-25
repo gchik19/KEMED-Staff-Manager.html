@@ -170,7 +170,7 @@ export function Ranks() {
             </div>
             <DialogFooter className="pt-4">
               <Button type="button" variant="outline" onClick={() => setIsOpen(false)}>Cancel</Button>
-              <Button type="submit" className="bg-[#004d40] hover:bg-[#00332a]">Save</Button>
+              <Button type="button" onClick={handleSubmit} className="bg-[#004d40] hover:bg-[#00332a]">Save</Button>
             </DialogFooter>
           </form>
         </DialogContent>
@@ -204,7 +204,7 @@ export function Ranks() {
              </div>
             <DialogFooter className="pt-4">
               <Button type="button" variant="outline" onClick={() => setIsBulkOpen(false)}>Cancel</Button>
-              <Button type="submit" className="bg-[#004d40] hover:bg-[#00332a]">Import</Button>
+              <Button type="button" onClick={handleBulkSubmit} className="bg-[#004d40] hover:bg-[#00332a]">Import</Button>
             </DialogFooter>
           </form>
         </DialogContent>

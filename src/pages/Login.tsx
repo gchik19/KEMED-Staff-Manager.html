@@ -11,6 +11,7 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,7 +44,11 @@ export function Login() {
       <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl z-10 overflow-hidden border border-slate-100 flex flex-col">
         <div className="bg-gradient-to-br from-[#004d40] to-[#00332a] pt-10 pb-8 px-6 text-center text-white flex flex-col items-center">
            <div className="mb-4 flex items-center justify-center bg-white rounded-full h-28 w-28 shadow-xl mx-auto overflow-hidden ring-4 ring-white/20">
-             <img src="/logo.png" alt="GES Logo" className="h-full w-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+             {!imageError ? (
+               <img src="/logo.png?v=2" alt="GES Logo" className="h-full w-full object-contain p-2" onError={() => setImageError(true)} />
+             ) : (
+               <Landmark className="h-14 w-14 text-[#004d40]" />
+             )}
            </div>
            <h1 className="text-3xl font-black tracking-wider text-yellow-400 drop-shadow-md shadow-black/50">KEMED</h1>
            <p className="text-sm font-medium text-white/90 mt-1 uppercase tracking-widest px-2 text-center leading-tight">
